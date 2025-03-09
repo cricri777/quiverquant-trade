@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-family: Arial, sans-serif;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    th {
+      background-color: #f2f2f2;
+      text-align: left;
+    }
+    tr:hover {
+      background-color: #ddd;
+    }
+    .highlight-purchase {
+        background-color: #e7f8fd;
+    }
+    .highlight-superior-100000 {
+        background-color: #94cbfa;
+    }
+    .highlight-superior-500000 {
+        background-color: #36b5ff;
+    }
+    h1 {
+      color: #333;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+<h2>OMG &#x1F631;&#x1F631;&#x1F631; !! Are we going to the moon &#x1F319; with this?? &#x1F680;&#x1F680;&#x1F525;&#x1F525;</h2>
+<p>{{ description }}</p>
+<table>
+  <tr>
+    <th>Representative</th>
+    <th>Ticker</th>
+    <th>Transaction Date</th>
+    <th>Report Date</th>
+    <th>Range</th>
+  </tr>
+    {% for rep in congress_representatives|sort(attribute='TransactionDate', reverse=true)|sort(attribute='ReportDate', reverse=true) %}
+  <tr class="highlight-superior-500000" style="background-color: #36b5ff;">
+  <td>{{ rep.Representative }}</td>
+  <td>{{ rep.Ticker }}</td>
+  <td>{{ rep.TransactionDate }}</td>
+  <td>{{ rep.ReportDate }}</td>
+  <td>{{ rep.Range }}</td>
+  </tr>
+  {% endfor %}
+</table>
+<i>This data is sourced from QuiverQuant's congressional trading insights</i>
+</body>
+</html>
